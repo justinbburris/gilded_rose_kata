@@ -1,5 +1,19 @@
 def update_quality(items)
   items.each do |item|
+    if item.name == 'Conjured Mana Cake'
+
+      if item.quality > 0
+        if item.sell_in > 0
+          item.quality -= 2
+        else
+          item.quality -= 4
+        end
+      end
+
+      item.sell_in -= 1
+      next
+    end
+
     if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
       if item.quality > 0
         if item.name != 'Sulfuras, Hand of Ragnaros'
@@ -23,9 +37,11 @@ def update_quality(items)
         end
       end
     end
+
     if item.name != 'Sulfuras, Hand of Ragnaros'
       item.sell_in -= 1
     end
+
     if item.sell_in < 0
       if item.name != "Aged Brie"
         if item.name != 'Backstage passes to a TAFKAL80ETC concert'
